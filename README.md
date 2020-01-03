@@ -1,45 +1,29 @@
-# docker: hidden tor .onion service 🐳
+# docker: status report for .onion services 🐳
 
-repo: https://github.com/fphammerle/docker-onion-service
+send email when tor .onion service goes online or offline
 
-docker hub: https://hub.docker.com/r/fphammerle/onion-service
+[//]: # (TODO repo: https://github.com/fphammerle/docker-onion-service-status-mail)
 
-signed tags: https://github.com/fphammerle/docker-onion-service/tags
+[//]: # (TODO docker hub: https://hub.docker.com/r/fphammerle/onion-service-status-mail)
 
-defaults to creating a [v3](https://trac.torproject.org/projects/tor/wiki/doc/NextGenOnions) service
-
-## example 1
+[//]: # (TODO signed tags: https://github.com/fphammerle/docker-onion-service-status-mail/tags)
 
 ```sh
-$ docker run --name onion-service \
-    -e VIRTUAL_PORT=80 -e TARGET=1.2.3.4:8080 \
-    fphammerle/onion-service
-```
-
-## example 2
-
-```sh
-$ docker create --name onion-service \
-    --env VERSION=3 \
-    --env VIRTUAL_PORT=80 \
-    --env TARGET=1.2.3.4:8080 \
-    --volume onion-key:/onion-service \
-    --restart unless-stopped \
-    --cap-drop all --security-opt no-new-privileges \
-    fphammerle/onion-service:latest
-
-$ docker start onion-service
-```
-
-## retrieve hostname
-
-```sh
-$ docker exec onion-service cat /onion-service/hostname
-abcdefghijklmnopqrstuvwxyz1234567890abcdefghijklmnopqrst.onion
+$ sudo docker network create tor
+$ sudo docker run -d --network tor \
+    --name tor_proxy \
+    fphammerle/tor-proxy
+$ sudo docker run -d --network tor \
+    -e TOR_HOST=tor_proxy -e TOR_PORT=9050 \
+    -e ONION_SERVICE_HOST=change-me.onion \
+    -e ONION_SERVICE_PORT=80 \
+    -e RECIPIENT_ADDRESS=me@example.com \
+    --name onion_service_monitor  \
+    fphammerle/onion-service-status-mail
 ```
 
 ## docker-compose 🐙
 
-1. `git clone https://github.com/fphammerle/docker-onion-service`
+1. `git clone https://github.com/fphammerle/docker-onion-service-status-mail`
 2. edit `docker-compose.yml`
 3. `docker-compose up --build`

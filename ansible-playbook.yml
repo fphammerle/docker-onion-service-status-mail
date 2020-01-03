@@ -1,15 +1,41 @@
 - hosts: [some-host]
   become: true
   tasks:
-  - docker_volume:
-      name: onion_service_key
+  - docker_network:
+      name: tor
   - docker_container:
-      name: onion_service
-      # 0.2-tor0.3.3.7-amd64
-      image: fphammerle/onion-service@sha256:51b5ee67fea1587421fd3dd982cc58f7554b68fe051d316d6d120e560675d2b8
-      env:
-        VIRTUAL_PORT: 80
-        TARGET: 1.2.3.4:8080
-      volumes: ['onion_service_key:/onion-service']
-      memory: 128M
+      name: tor_proxy
+      # 1.0.0-tor0.4.1.6-amd64
+      image: fphammerle/tor-proxy@sha256:ad55d07b1b21c35fa044dc3e1ea6c7d8494f39eb89491ddad35c245340f7cd4b
+      networks:
+      - name: tor
+      purge_networks: yes
       restart_policy: unless-stopped
+      memory: 128M
+      cpu_quota: 5000
+      cpu_period: 10000
+      security_opts: [no-new-privileges]
+  - docker_volume:
+      name: onion_service_monitor_mail_queue
+  - docker_container:
+      name: onion_service_monitor
+      # TODO add image hash
+      image: fphammerle/onion-service-status-mail
+      env:
+        TOR_HOST: tor_proxy
+        TOR_PORT: 9050
+        ONION_SERVICE_HOST: change-me.onion
+        ONION_SERVICE_PORT: 80
+        # TIMEOUT_SECONDS: 8
+        # SLEEP_DURATION: 1m
+        RECIPIENT_ADDRESS: change.me@domain.tld
+      volumes:
+      - onion_service_monitor_mail_queue:/var/spool/dma:rw
+      networks:
+      - name: tor
+      purge_networks: yes
+      restart_policy: unless-stopped
+      memory: 64M
+      cpu_quota: 2000
+      cpu_period: 10000
+      security_opts: [no-new-privileges]

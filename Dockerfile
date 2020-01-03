@@ -1,30 +1,30 @@
-FROM alpine:3.10
+FROM alpine:3.11
 
-ARG TOR_PACKAGE_VERSION=0.3.5.8-r0
+ARG DUMB_INIT_PACKAGE_VERSION=1.2.2-r1
 ARG NETCAT_PACKAGE_VERSION=1.130-r1
+ARG DMA_REPOSITORY=http://dl-cdn.alpinelinux.org/alpine/edge/testing
+ARG DMA_PACKAGE_VERSION=0.12-r0
 RUN apk add --no-cache \
-    netcat-openbsd=${NETCAT_PACKAGE_VERSION} \
-    tor=${TOR_PACKAGE_VERSION}
+        dumb-init=${DUMB_INIT_PACKAGE_VERSION} \
+        netcat-openbsd=${NETCAT_PACKAGE_VERSION} \
+    && apk add --repository=${DMA_REPOSITORY} --no-cache \
+        dma=${DMA_PACKAGE_VERSION} \
+    && adduser -S -G mail report
 
-RUN adduser -S onion
-RUN mkdir -m u=rwx,g=,o= /onion-service && chown onion /onion-service
-VOLUME /onion-service
+VOLUME /var/spool/dma
 
-COPY torrc.template /
-RUN chmod a+r /torrc.template
+ENV TOR_HOST= \
+    TOR_PORT=9050 \
+    ONION_SERVICE_HOST= \
+    ONION_SERVICE_PORT= \
+    TIMEOUT_SECONDS=4 \
+    SLEEP_DURATION=16s \
+    RECIPIENT_ADDRESS= \
+    VERBOSE=
 
-ENV VERSION 3
-ENV VIRTUAL_PORT 80
-ENV TARGET 1.2.3.4:8080
+COPY --chown=report:nobody monitor.sh /
+USER report
+ENTRYPOINT ["dumb-init", "--"]
+CMD ["/monitor.sh"]
 
-COPY entrypoint.sh /
-RUN chmod a+rx /entrypoint.sh
-ENTRYPOINT ["/entrypoint.sh"]
-
-USER onion
-
-CMD ["tor", "-f", "/tmp/torrc"]
-
-HEALTHCHECK CMD \
-    nc -x localhost:9050 -z "$(cat /onion-service/hostname)" "$VIRTUAL_PORT" \
-    || exit 1
+HEALTHCHECK CMD nc -z "$TOR_HOST" "$TOR_PORT" || exit 1
