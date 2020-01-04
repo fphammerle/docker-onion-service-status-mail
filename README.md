@@ -1,6 +1,7 @@
 # docker: status report for .onion services 🐳
 
-send email when tor .onion service goes online or offline
+send email via [dma](https://github.com/corecode/dma) 
+when tor .onion service goes online or offline
 
 [//]: # (TODO repo: https://github.com/fphammerle/docker-onion-service-status-mail)
 
