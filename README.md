@@ -1,4 +1,4 @@
-# docker: status report for .onion services 🐳
+# docker: status report for .onion services ✉️ 🐳
 
 send email via [dma](https://github.com/corecode/dma) 
 when [tor .onion service](https://2019.www.torproject.org/docs/onion-services.html.en)
