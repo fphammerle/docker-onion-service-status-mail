@@ -19,8 +19,8 @@
       name: onion_service_monitor_mail_queue
   - docker_container:
       name: onion_service_monitor
-      # TODO add image hash
-      image: fphammerle/onion-service-status-mail
+      # docker/1.0.0-amd64
+      image: docker.io/fphammerle/onion-service-status-mail@sha256:98585eb7a6d9724240982560a8e7262a5c4019aa875de590bf608917d841377c
       env:
         TOR_HOST: tor_proxy
         TOR_PORT: 9050
