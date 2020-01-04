@@ -4,11 +4,11 @@ send email via [dma](https://github.com/corecode/dma)
 when [tor .onion service](https://2019.www.torproject.org/docs/onion-services.html.en)
 goes online or offline
 
-[//]: # (TODO repo: https://github.com/fphammerle/docker-onion-service-status-mail)
+repo: https://github.com/fphammerle/docker-onion-service-status-mail
 
-[//]: # (TODO docker hub: https://hub.docker.com/r/fphammerle/onion-service-status-mail)
+docker hub: https://hub.docker.com/r/fphammerle/onion-service-status-mail
 
-[//]: # (TODO signed tags: https://github.com/fphammerle/docker-onion-service-status-mail/tags)
+signed image tags: https://github.com/fphammerle/docker-onion-service-status-mail/tags
 
 ```sh
 $ sudo docker network create tor
