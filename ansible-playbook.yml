@@ -1,5 +1,6 @@
 - hosts: [some-host]
   become: true
+  gather_facts: no
   tasks:
   - docker_network:
       name: tor
