@@ -4,6 +4,8 @@
   tasks:
   - docker_network:
       name: tor
+      driver_options:
+        com.docker.network.bridge.name: tor-proxy
     register: tor_proxy_network
   - docker_container:
       name: tor_proxy
