@@ -19,8 +19,6 @@
       cpu_quota: 5000
       cpu_period: 10000
       security_opts: [no-new-privileges]
-  - docker_volume:
-      name: onion_service_monitor_mail_queue
   - docker_container:
       name: onion_service_monitor
       # docker/1.0.0-amd64
