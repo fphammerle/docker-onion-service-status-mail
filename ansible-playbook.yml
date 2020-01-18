@@ -4,12 +4,13 @@
   tasks:
   - docker_network:
       name: tor
+    register: tor_proxy_network
   - docker_container:
       name: tor_proxy
       # 1.0.0-tor0.4.1.6-amd64
       image: fphammerle/tor-proxy@sha256:ad55d07b1b21c35fa044dc3e1ea6c7d8494f39eb89491ddad35c245340f7cd4b
       networks:
-      - name: tor
+      - name: '{{ tor_proxy_network.ansible_facts.docker_network.Name }}'
       purge_networks: yes
       restart_policy: unless-stopped
       memory: 128M
@@ -33,7 +34,7 @@
       volumes:
       - onion_service_monitor_mail_queue:/var/spool/dma:rw
       networks:
-      - name: tor
+      - name: '{{ tor_proxy_network.ansible_facts.docker_network.Name }}'
       purge_networks: yes
       restart_policy: unless-stopped
       memory: 64M
