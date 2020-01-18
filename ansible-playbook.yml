@@ -19,12 +19,13 @@
       cpu_quota: 5000
       cpu_period: 10000
       security_opts: [no-new-privileges]
+    register: tor_proxy_container
   - docker_container:
       name: onion_service_monitor
       # docker/1.0.0-amd64
       image: docker.io/fphammerle/onion-service-status-mail@sha256:98585eb7a6d9724240982560a8e7262a5c4019aa875de590bf608917d841377c
       env:
-        TOR_HOST: tor_proxy
+        TOR_HOST: "{{ tor_proxy_container.ansible_facts.docker_container.Name | replace('/', '') }}"
         TOR_PORT: 9050
         ONION_SERVICE_HOST: change-me.onion
         ONION_SERVICE_PORT: 80
