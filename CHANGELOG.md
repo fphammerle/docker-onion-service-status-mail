@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 - `docker-compose`: drop capabilities
+- `Dockerfile`: add registry to base image specifier for `podman build`
 
 ### Removed
 - sample ansible playbook to avoid duplication of container settings in `docker-compose.yml`
