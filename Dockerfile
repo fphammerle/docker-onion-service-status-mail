@@ -28,3 +28,9 @@ ENTRYPOINT ["dumb-init", "--"]
 CMD ["/monitor.sh"]
 
 HEALTHCHECK CMD nc -z "$TOR_HOST" "$TOR_PORT" || exit 1
+
+# https://github.com/opencontainers/image-spec/blob/v1.0.1/annotations.md
+ARG REVISION=
+LABEL org.opencontainers.image.title="report online status of tor onion services via email" \
+    org.opencontainers.image.source="https://github.com/fphammerle/onion-service-status-mail" \
+    org.opencontainers.image.revision="$REVISION"
