@@ -16,7 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - replaced environment variable `RECIPIENT_ADDRESS` with `MAIL_TO`
-- recipients are inserted in `To:` header
+- insert recipients into `To:` header
 
 ### Fixed
 - `docker-compose`: drop capabilities
