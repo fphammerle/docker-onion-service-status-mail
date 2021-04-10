@@ -5,12 +5,14 @@ volumes:
 
 services:
   tor_proxy:
-    # 1.0.0-tor0.4.1.6-amd64
-    image: fphammerle/tor-proxy@sha256:ad55d07b1b21c35fa044dc3e1ea6c7d8494f39eb89491ddad35c245340f7cd4b
-    security_opt: ['no-new-privileges']
-    restart: unless-stopped
+    # object 76f7fcaf094d28a2e8ffaf0a94c83f084c4fc03e
+    # tag docker/4.1.0-tor0.4.4.8r0-amd64
+    image: docker.io/fphammerle/tor-proxy@sha256:161a3d494032adb588b8e38bc11a568806ca1499e6085b08daaeb93245e51bc9
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges]
     cpus: 0.5
     mem_limit: 128m
+    restart: unless-stopped
   monitor:
     build: .
     image: fphammerle/onion-service-status-mail
@@ -25,9 +27,10 @@ services:
       # VERBOSE: 1
     volumes:
     - mail_queue:/var/spool/dma:rw
+    cap_drop: [ALL]
     security_opt: [no-new-privileges]
-    restart: unless-stopped
     cpus: 0.2
     mem_limit: 64m
+    restart: unless-stopped
 
 # https://docs.docker.com/compose/compose-file/

@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - set name of bridge interface to "tor-proxy" (instead of using random name)
 
 ### Fixed
+- `docker-compose`: drop capabilities
 - sample playbook:
   - disable unnecessary facts gathering
   - pin docker image by specifying digest (no longer trust registry)
