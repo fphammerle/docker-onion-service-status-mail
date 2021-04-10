@@ -23,8 +23,8 @@ services:
       ONION_SERVICE_PORT: 80
       # TIMEOUT_SECONDS: 8
       # SLEEP_DURATION: 1m
-      RECIPIENT_ADDRESS: change.me@domain.tld
-      # VERBOSE: 1
+      MAIL_TO: change.me@domain.tld, another@recipient.com
+      #VERBOSE: 1
     volumes:
     - mail_queue:/var/spool/dma:rw
     cap_drop: [ALL]

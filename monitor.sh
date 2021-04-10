@@ -11,8 +11,8 @@ elif [ -z "$ONION_SERVICE_HOST" ]; then
 elif [ -z "$ONION_SERVICE_PORT" ]; then
     echo 'missing $ONION_SERVICE_PORT'
     exit 1
-elif [ -z "$RECIPIENT_ADDRESS" ]; then
-    echo 'missing $RECIPIENT_ADDRESS'
+elif [ -z "$MAIL_TO" ]; then
+    echo 'missing $MAIL_TO'
     exit 1
 fi
 
@@ -29,8 +29,12 @@ send_report() {(
     if [ ! -z "$VERBOSE" ]; then
         set -x
     fi
-    echo -e "From: ${sender_address}\nSubject: $ONION_SERVICE_HOST:$ONION_SERVICE_PORT $1\n" \
-        | sendmail "$RECIPIENT_ADDRESS"
+    sendmail -t <<EOF
+From: $sender_address
+To: $MAIL_TO
+Subject: $ONION_SERVICE_HOST:$ONION_SERVICE_PORT $1
+
+EOF
 )}
 
 last_state=""

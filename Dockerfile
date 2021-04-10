@@ -19,7 +19,7 @@ ENV TOR_HOST= \
     ONION_SERVICE_PORT= \
     TIMEOUT_SECONDS=4 \
     SLEEP_DURATION=16s \
-    RECIPIENT_ADDRESS= \
+    MAIL_TO= \
     VERBOSE=
 
 COPY --chown=report:nobody monitor.sh /
