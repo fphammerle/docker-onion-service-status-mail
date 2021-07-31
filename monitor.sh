@@ -38,6 +38,7 @@ EOF
 )}
 
 last_state=""
+left_retries="$RETRIES"
 while : ; do
     if ! nc -z -w "$TIMEOUT_SECONDS" "$TOR_HOST" "$TOR_PORT"; then
         echo "failed to connect to tor proxy at $TOR_HOST:$TOR_PORT"
@@ -48,12 +49,18 @@ while : ; do
                 send_report online
             fi
             last_state="online"
+            left_retries=$RETRIES
         else
-            if [ "$last_state" == "online" ]; then
-                echo went offline
-                send_report offline
+            if [ $left_retries -le 0 ]; then
+                if [ "$last_state" == "online" ]; then
+                    echo went offline
+                    send_report offline
+                fi
+                last_state="offline"
+            else
+                left_retries=$((left_retries-1))
+                [ ! -z "$VERBOSE" ] && echo "$left_retries retry/ies left"
             fi
-            last_state="offline"
         fi
     fi
     # flush queue

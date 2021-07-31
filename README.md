@@ -19,6 +19,7 @@ $ sudo docker run -d --network tor \
     -e TOR_HOST=tor_proxy -e TOR_PORT=9050 \
     -e ONION_SERVICE_HOST=change-me.onion \
     -e ONION_SERVICE_PORT=80 \
+    -e RETRIES=2 \
     -e MAIL_TO=me@example.com,someone@else.com \
     --name onion_service_monitor  \
     fphammerle/onion-service-status-mail
