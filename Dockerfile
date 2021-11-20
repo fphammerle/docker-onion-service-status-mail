@@ -3,7 +3,7 @@ FROM docker.io/alpine:3.14.2
 ARG DUMB_INIT_PACKAGE_VERSION=1.2.5-r1
 ARG NETCAT_PACKAGE_VERSION=1.130-r2
 ARG DMA_REPOSITORY=http://dl-cdn.alpinelinux.org/alpine/edge/testing
-ARG DMA_PACKAGE_VERSION=0.13-r1
+ARG DMA_PACKAGE_VERSION=0.13-r2
 RUN apk add --no-cache \
         dumb-init=${DUMB_INIT_PACKAGE_VERSION} \
         netcat-openbsd=${NETCAT_PACKAGE_VERSION} \
