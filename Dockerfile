@@ -1,4 +1,4 @@
-FROM docker.io/alpine:3.14.3
+FROM docker.io/alpine:3.15.0
 
 ARG DUMB_INIT_PACKAGE_VERSION=1.2.5-r1
 ARG NETCAT_PACKAGE_VERSION=1.130-r2
