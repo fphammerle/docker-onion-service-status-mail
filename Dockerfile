@@ -1,7 +1,7 @@
-FROM docker.io/alpine:3.14.3
+FROM docker.io/alpine:3.15.0
 
 ARG DUMB_INIT_PACKAGE_VERSION=1.2.5-r1
-ARG NETCAT_PACKAGE_VERSION=1.130-r2
+ARG NETCAT_PACKAGE_VERSION=1.130-r3
 ARG DMA_REPOSITORY=http://dl-cdn.alpinelinux.org/alpine/edge/testing
 ARG DMA_PACKAGE_VERSION=0.13-r2
 RUN apk add --no-cache \
