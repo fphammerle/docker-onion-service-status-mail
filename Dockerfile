@@ -11,7 +11,7 @@
 FROM docker.io/alpine:20230329
 
 ARG DUMB_INIT_PACKAGE_VERSION=1.2.5-r2
-ARG NETCAT_PACKAGE_VERSION=1.219-r0
+ARG NETCAT_PACKAGE_VERSION=1.219-r1
 ARG DMA_REPOSITORY=http://dl-cdn.alpinelinux.org/alpine/edge/testing
 ARG DMA_PACKAGE_VERSION=0.13-r3
 RUN apk add --no-cache \
