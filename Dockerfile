@@ -11,7 +11,9 @@
 FROM docker.io/alpine:20230329
 
 ARG DUMB_INIT_PACKAGE_VERSION=1.2.5-r2
-ARG NETCAT_PACKAGE_VERSION=1.219-r1
+# https://github.com/openbsd/src/commits/master/usr.bin/nc
+# https://git.alpinelinux.org/aports/log/main/netcat-openbsd?h=v20230329
+ARG NETCAT_PACKAGE_VERSION=1.225-r0
 ARG DMA_REPOSITORY=http://dl-cdn.alpinelinux.org/alpine/edge/testing
 ARG DMA_PACKAGE_VERSION=0.13-r3
 RUN apk add --no-cache \
