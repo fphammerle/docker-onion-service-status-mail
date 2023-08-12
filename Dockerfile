@@ -10,7 +10,8 @@
 # >     required by: dma-0.13-r3[so:libssl.so.3]
 FROM docker.io/alpine:20230329
 
-ARG DUMB_INIT_PACKAGE_VERSION=1.2.5-r2
+# https://git.alpinelinux.org/aports/log/community/dumb-init
+ARG DUMB_INIT_PACKAGE_VERSION=1.2.5-r3
 # https://github.com/openbsd/src/commits/master/usr.bin/nc
 # https://git.alpinelinux.org/aports/log/main/netcat-openbsd?h=v20230329
 ARG NETCAT_PACKAGE_VERSION=1.225-r0
