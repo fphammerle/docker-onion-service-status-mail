@@ -8,7 +8,7 @@
 # >     required by: dma-0.13-r3[so:libcrypto.so.3]
 # >   so:libssl.so.3 (no such package):
 # >     required by: dma-0.13-r3[so:libssl.so.3]
-FROM docker.io/alpine:20230329
+FROM docker.io/alpine:20230901
 
 # https://git.alpinelinux.org/aports/log/community/dumb-init
 ARG DUMB_INIT_PACKAGE_VERSION=1.2.5-r3
