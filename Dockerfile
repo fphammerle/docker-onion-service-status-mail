@@ -13,8 +13,8 @@ FROM docker.io/alpine:20230901
 # https://git.alpinelinux.org/aports/log/community/dumb-init
 ARG DUMB_INIT_PACKAGE_VERSION=1.2.5-r3
 # https://github.com/openbsd/src/commits/master/usr.bin/nc
-# https://git.alpinelinux.org/aports/log/main/netcat-openbsd?h=v20230329
-ARG NETCAT_PACKAGE_VERSION=1.225-r0
+# https://git.alpinelinux.org/aports/log/main/netcat-openbsd
+ARG NETCAT_PACKAGE_VERSION=1.226-r0
 # https://git.alpinelinux.org/aports/log/testing/dma
 ARG DMA_REPOSITORY=http://dl-cdn.alpinelinux.org/alpine/edge/testing
 ARG DMA_PACKAGE_VERSION=0.13-r4
