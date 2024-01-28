@@ -15,14 +15,12 @@ ARG DUMB_INIT_PACKAGE_VERSION=1.2.5-r3
 # https://github.com/openbsd/src/commits/master/usr.bin/nc
 # https://git.alpinelinux.org/aports/log/main/netcat-openbsd
 ARG NETCAT_PACKAGE_VERSION=1.226-r0
-# https://git.alpinelinux.org/aports/log/testing/dma
-ARG DMA_REPOSITORY=http://dl-cdn.alpinelinux.org/alpine/edge/testing
+# https://git.alpinelinux.org/aports/log/community/dma
 ARG DMA_PACKAGE_VERSION=0.13-r4
 RUN apk add --no-cache \
+        dma=${DMA_PACKAGE_VERSION} \
         dumb-init=${DUMB_INIT_PACKAGE_VERSION} \
         netcat-openbsd=${NETCAT_PACKAGE_VERSION} \
-    && apk add --repository=${DMA_REPOSITORY} --no-cache \
-        dma=${DMA_PACKAGE_VERSION} \
     && adduser -S -G mail report
 
 VOLUME /var/spool/dma
