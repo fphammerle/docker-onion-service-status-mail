@@ -15,7 +15,7 @@ ARG DUMB_INIT_PACKAGE_VERSION=1.2.5-r3
 # https://github.com/openbsd/src/commits/master/usr.bin/nc
 # https://salsa.debian.org/debian/netcat-openbsd/-/commits/debian/latest
 # https://git.alpinelinux.org/aports/log/main/netcat-openbsd
-ARG NETCAT_PACKAGE_VERSION=1.228.1-r0
+ARG NETCAT_PACKAGE_VERSION=1.229.1-r0
 # https://git.alpinelinux.org/aports/log/community/dma
 ARG DMA_PACKAGE_VERSION=0.14-r0
 RUN apk add --no-cache \
