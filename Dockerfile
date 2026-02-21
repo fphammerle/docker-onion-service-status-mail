@@ -11,13 +11,13 @@
 FROM docker.io/alpine:20260127
 
 # https://git.alpinelinux.org/aports/log/community/dumb-init
-ARG DUMB_INIT_PACKAGE_VERSION=1.2.5-r3
+ARG DUMB_INIT_PACKAGE_VERSION=1.2.5-r4
 # https://github.com/openbsd/src/commits/master/usr.bin/nc
 # https://salsa.debian.org/debian/netcat-openbsd/-/commits/debian/latest
 # https://git.alpinelinux.org/aports/log/main/netcat-openbsd
 ARG NETCAT_PACKAGE_VERSION=1.234.1-r0
 # https://git.alpinelinux.org/aports/log/community/dma
-ARG DMA_PACKAGE_VERSION=0.14-r0
+ARG DMA_PACKAGE_VERSION=0.14-r1
 RUN apk add --no-cache \
         dma=${DMA_PACKAGE_VERSION} \
         dumb-init=${DUMB_INIT_PACKAGE_VERSION} \
